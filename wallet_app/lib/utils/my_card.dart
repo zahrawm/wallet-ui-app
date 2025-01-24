@@ -26,14 +26,24 @@ class MyCard extends StatelessWidget {
             color: Color, borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
               height: 10,
             ),
-            Text('Balance',
-                style: TextStyle(
-                  color: Colors.white,
-                )),
+            Row(
+              children: [
+                Text('Balance',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+                Spacer(),
+                Image.asset(
+                  'lib/icons/money.png',
+                  height: 50,
+                )
+              ],
+            ),
             SizedBox(
               height: 10,
             ),
