@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wallet_app/utils/my_button.dart';
+import 'package:wallet_app/utils/my_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,22 +49,62 @@ class HomePage extends StatelessWidget {
             height: 25,
           ),
           Container(
-            width: 300,
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.circular(20)),
-            child: Column(
+            height: 200,
+            child: ListView(
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
               children: [
-                Text('Balance'),
-                Text('\$2335'),
-                Row(
-                  children: [Text('*** 3456'), Text('10/244')],
-                )
+                MyCard(
+                  balance: 5324,
+                  cardNumber: 12344,
+                  expiryMonth: 10,
+                  expiryYear: 30,
+                  Color: Colors.deepPurple[300],
+                ),
+                MyCard(
+                  balance: 5325,
+                  cardNumber: 123567,
+                  expiryMonth: 10,
+                  expiryYear: 30,
+                  Color: Colors.blue[300],
+                ),
+                MyCard(
+                    balance: 534,
+                    cardNumber: 12344,
+                    expiryMonth: 10,
+                    expiryYear: 30,
+                    Color: Colors.green[300]),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          SmoothPageIndicator(
+            controller: _controller,
+            count: 3,
+            effect: ExpandingDotsEffect(activeDotColor: Colors.grey.shade100),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyButton(
+                    iconImagePath: 'lib/icons/money.png', buttonText: 'Send'),
+                MyButton(
+                    iconImagePath: 'lib/icons/atm-card.png',
+                    buttonText: 'Card'),
+                MyButton(
+                    iconImagePath: 'lib/icons/payment.png', buttonText: 'Bills')
               ],
             ),
           )
         ],
+
         //appbars
         //cars
         //  three buttons
